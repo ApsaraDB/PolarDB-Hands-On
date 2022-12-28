@@ -1,4 +1,4 @@
-# Multi Tenant Business System Solution with LIST DEFAULT HASH partitioning of PolarDB MySQL
+# Partition Feature 1: Multi Tenant Business System Solution with LIST DEFAULT HASH Partitioning of PolarDB MySQL
 
 ## Business Scenario
 If you want to use the LIST rule to partition, but the values of partition key fields cannot be all enumerated, or there are many enumerated values, and the corresponding data volume is small. The data distribution complies with the principle of "two eight". 20% of the partition key values contain 80% of the data, and the remaining 80% of the partition key values contain 20% of the data. In this scenario, you can choose the LIST DEFAULT HASH partition type. 80% of the data is partitioned according to the LIST rule. The data that does not conform to the LIST rule is placed in the DEFAULT partitions which partitioned according to the HASH rule.
