@@ -1,6 +1,6 @@
 # PolarDB Hands On
 
-# Database centric cloud solution hands-on on PolarDB MySQL
+# Database centric solutions hands-on on PolarDB MySQL
 
 | Solution | Description | Related Cloud Services | Video Tutorial | Solution Page on Alibaba Cloud |
 | :------: | :---------: | :--------------------: | :------------: | :----------------------------: |
