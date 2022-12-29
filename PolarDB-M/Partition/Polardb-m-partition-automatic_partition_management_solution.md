@@ -1,5 +1,7 @@
+<a name="Q6Yf8"></a>
+# Partition Feature 2: Automatic Partition Management Solution
 The automatic partition management solution of PolarDB MySQL can help customers reduce costs and increase efficiency.
-<a name="hP4Mc"></a>
+<a name="O2ulw"></a>
 ## Business Scenario
 Assuming that the PolarDB MySQL is now used as a data transfer station, the data generated in the business every day will be stored in a new partition of the database, and then the data will be synchronized to the data warehouse for analysis at the same time. After the synchronization, the data in the partition can be clean up. During the O&M time of the next day, the partition where the data of the previous day is located can be dropped to save disk space, which can achieve the purpose of reducing costs and increasing efficiency.<br />In this scenario, the advantage of using the PolarDB MySQL partition table is that, due to the support of the new features of partition level mdl and interval partitioning, droppping old partitions and adding new ones will not block the DML operation of the current partition.<br />![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2022/png/221080/1672284218593-741acd27-e685-4898-adbb-fe17e90354c4.png#clientId=ub7df047b-4c00-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=645&id=u9b51b0f9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1290&originWidth=2126&originalType=binary&ratio=1&rotation=0&showTitle=false&size=771421&status=done&style=none&taskId=u318de479-eab7-40d4-8682-8f7297bb3ae&title=&width=1063)
 <a name="BfKoy"></a>
