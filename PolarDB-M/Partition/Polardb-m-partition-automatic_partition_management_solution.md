@@ -22,9 +22,9 @@ Modifying this parameter requires restarting the instance. After the instance re
 ### Events
 Adding/dropping partitions periodically through events can reduce the workload of the DBA.<br />First create an Interval partition table, `gmt_create` as the partition key, the interval is 1 day, and there is a partition p0 in the table.
 ```sql
-CREATE TABLE `xxx_metering` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
+CREATE TABLE `event_metering` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
+  `gmt_create` datetime NOT NULL COMMENT 'create time',
   `uid` varchar(128) NOT NULL COMMENT 'uid',
   `gmt_modified` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT 'modified time',
   `count` int(10) unsigned DEFAULT NULL,
@@ -40,8 +40,8 @@ PARTITION BY RANGE COLUMNS(`gmt_create`) INTERVAL(DAY,1)
 ```
 At present, the largest partition range is '2022-12-27', insert some data beyond the partition range, and the interval partition will automatically add partitions.
 ```sql
-INSERT INTO xxx_metering VALUES(0, '2022-12-27', '0', '2022-12-27', 1, 'Normal');
-INSERT INTO xxx_metering VALUES(0, '2022-12-28', '0', '2022-12-28', 1, 'Normal');
+INSERT INTO event_metering VALUES(0, '2022-12-27', '0', '2022-12-27', 1, 'Normal');
+INSERT INTO event_metering VALUES(0, '2022-12-28', '0', '2022-12-28', 1, 'Normal');
 ```
 Insert some data into the table through a procedure to simulate data writing.
 ```sql
@@ -53,7 +53,7 @@ declare b int;
 set a=start_rec;
 set b=end_rec;
 while a<end_rec do
-INSERT INTO xxx_metering VALUES(a, '2022-12-28', convert(a, char), '2022-12-28', 1, 'Normal');
+INSERT INTO event_metering VALUES(a, '2022-12-28', convert(a, char), '2022-12-28', 1, 'Normal');
 set a=a+1;
 end while;
 end||
@@ -66,7 +66,7 @@ Assume that the O&M time is 18:00pm every day, events are set to be triggered at
 CREATE EVENT IF NOT EXISTS add_partition ON SCHEDULE
 EVERY 1 DAY STARTS '2022-12-28 18:00:00'
 ON COMPLETION PRESERVE
-DO INSERT INTO xxx_metering VALUES(0, DATE_ADD(NOW(), INTERVAL 1 DAY), 0, DATE_ADD(NOW(), INTERVAL 1 DAY), 1, 'Normal');
+DO INSERT INTO event_metering VALUES(0, DATE_ADD(NOW(), INTERVAL 1 DAY), 0, DATE_ADD(NOW(), INTERVAL 1 DAY), 1, 'Normal');
 ```
 Create a event for dropping a partition.
 ```sql
@@ -76,7 +76,7 @@ EVERY 1 DAY STARTS '2022-12-28 18:00:00'
 ON COMPLETION PRESERVE
 DO
 BEGIN
-set @pname = concat('alter table xxx_metering drop partition _p', date_format(curdate(), '%Y%m%d000000'));
+set @pname = concat('alter table event_metering drop partition _p', date_format(curdate(), '%Y%m%d000000'));
 prepare stmt_drop_partition from @pname;
 execute stmt_drop_partition;
 deallocate prepare stmt_drop_partition;
