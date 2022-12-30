@@ -3,16 +3,16 @@
 The automatic partition management solution of PolarDB MySQL can help customers reduce costs and increase efficiency.
 <a name="O2ulw"></a>
 ## Business Scenario
-Assuming that the PolarDB MySQL is now used as a data transfer station, the data generated in the business every day will be stored in a new partition of the database, and then the data will be synchronized to the data warehouse for analysis at the same time. After the synchronization, the data in the partition can be clean up. During the O&M time of the next day, the partition where the data of the previous day is located can be dropped to save disk space, which can achieve the purpose of reducing costs and increasing efficiency.<br />In this scenario, the advantage of using the PolarDB MySQL partition table is that, due to the support of the new features of partition level mdl and interval partitioning, droppping old partitions and adding new ones will not block the DML operation of the current partition.<br />![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/116107c9-e3e7-420b-ba06-9ff0778ba1d8.png#crop=0&crop=0&crop=1&crop=1&id=T7gfG&originHeight=773&originWidth=1500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+Assuming that the PolarDB MySQL is now used as a data transfer station, the data generated in the business every day will be stored in a new partition of the database, and then the data will be synchronized to the data warehouse for analysis at the same time. After the synchronization, the data in the partition can be clean up. During the O&M time(Maintenance Window) of the next day, the partition where the data of the previous day is located can be dropped to save disk space, which can achieve the purpose of reducing costs and increasing efficiency.<br />In this scenario, the advantage of using the PolarDB MySQL partition table is that, due to the support of the new features of partition level mdl and interval partitioning, droppping old partitions and adding new ones will not block the DML operation of the current partition.<br />![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/116107c9-e3e7-420b-ba06-9ff0778ba1d8.png#crop=0&crop=0&crop=1&crop=1&id=T7gfG&originHeight=773&originWidth=1500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 <a name="BfKoy"></a>
 ## The Solution
 On the [PolarDB console](https://polardb.console.aliyun.com/), select an instance whose cluster version must be PolarDB MySQL engine version 8.0.2 and whose Revision version is 8.0.2.2.0 or above. If there is no suitable instance, please purchase a new instance or upgrade the instance version.
 <a name="bm6RF"></a>
 ### Parameters
-PolarDB MySQL has a new feature of partition level mdl, which can reduce the granularity of MDL to optimize some scenarios where DDL and DML are mutually blocked. Enable this function to better experience automatic partition management.<br />On the navigation interface of the instance, click **Parameters**, enter partition_level_mdl_enabled in the input box, and check the value of this parameter. If the current value is not **ON**, you need to modify the parameter to **ON** on the console.<br />**Steps:**
+PolarDB MySQL has a new feature of [partition level MDL](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/online-partition-maintenance)(Metadata Lock), which can reduce the granularity of MDL to optimize some scenarios where DDL and DML are mutually blocked. Enable this function to better experience automatic partition management.<br />On the navigation interface of the instance, click **Parameters**, enter loose_partition_level_mdl_enabled in the input box, and check the value of this parameter. If the current value is not **ON**, you need to modify the parameter to **ON** on the console.<br />![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2022/png/221080/1672377399392-0b2e4548-402c-4a1a-892f-24fa5f86a6b1.png#clientId=u78aa8c14-6e15-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=266&id=u1ef54261&name=image.png&originHeight=532&originWidth=2430&originalType=binary&ratio=1&rotation=0&showTitle=false&size=220167&status=done&style=none&taskId=ufdada90d-8d77-437f-914e-1b26d34c52c&title=&width=1215)<br />**How to modify parameter:**
 
 1. Click **Modify**.
-2. Search partition_level_mdl_enabled.
+2. Search loose_partition_level_mdl_enabled.
 3. If the **Cluster Parameter** column shows that the current value is **OFF**, click the button to change it to **ON.**
 4. Click **Apply Changes**.
 5.  Click **Modify Now**.
@@ -20,7 +20,7 @@ PolarDB MySQL has a new feature of partition level mdl, which can reduce the gra
 Modifying this parameter requires restarting the instance. After the instance restarts, click **Log On to Database** to create events on the DMS console.
 <a name="hfpEM"></a>
 ### Events
-Adding/dropping partitions periodically through events can reduce the workload of the DBA.<br />First create an Interval partition table, `gmt_create` as the partition key, the interval is 1 day, and there is a partition p0 in the table.
+Adding/dropping partitions periodically through events can reduce the workload of the DBA.<br />First create an [Interval partition table](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/overview-internal-range), `gmt_create` as the partition key, the interval is 1 day, and there is a partition p0 in the table.
 ```sql
 CREATE TABLE `event_metering` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
@@ -35,13 +35,13 @@ CREATE TABLE `event_metering` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
 PARTITION BY RANGE COLUMNS(`gmt_create`) INTERVAL(DAY,1)
 (
-  PARTITION p0 VALUES LESS THAN('2022-12-27')
+  PARTITION p0 VALUES LESS THAN('2022-12-29')
 );
 ```
-At present, the largest partition range is '2022-12-27', insert some data beyond the partition range, and the interval partition will automatically add partitions.
+At present, the largest partition range is '2022-12-29', insert some data beyond the partition range, and the interval partition will automatically add partitions.
 ```sql
-INSERT INTO event_metering VALUES(0, '2022-12-27', '0', '2022-12-27', 1, 'Normal');
-INSERT INTO event_metering VALUES(0, '2022-12-28', '0', '2022-12-28', 1, 'Normal');
+INSERT INTO event_metering VALUES(0, '2022-12-29', '0', '2022-12-29', 1, 'Normal');
+INSERT INTO event_metering VALUES(0, '2022-12-30', '0', '2022-12-30', 1, 'Normal');
 ```
 Insert some data into the table through a procedure to simulate data writing.
 ```sql
@@ -53,7 +53,7 @@ declare b int;
 set a=start_rec;
 set b=end_rec;
 while a<end_rec do
-INSERT INTO event_metering VALUES(a, '2022-12-28', convert(a, char), '2022-12-28', 1, 'Normal');
+INSERT INTO event_metering VALUES(a, now(), convert(a, char), now(), 1, 'Normal');
 set a=a+1;
 end while;
 end||
@@ -61,10 +61,10 @@ DELIMITER ;
 
 CALL batch_insert(1, 10000);
 ```
-Assume that the O&M time is 18:00pm every day, events are set to be triggered at 18:00pm.<br />Create a event for adding a new partition.
+Assume that the O&M time(Maintenance Window) is 14:00pm-15:00pm every day, events are set to be triggered at 14:00pm.<br />The O&M time is generally 2:00-3:00 by default, and the O&M time of the instance can be modified in the **Maintenance Window** of the **Overview** interface.<br />![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2022/png/221080/1672377756096-128f27bd-f7d9-4bd0-9998-db4695e9d03d.png#clientId=u78aa8c14-6e15-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=254&id=ue78bf57d&name=image.png&originHeight=508&originWidth=2632&originalType=binary&ratio=1&rotation=0&showTitle=false&size=292541&status=done&style=none&taskId=uabd16580-2438-4fed-87b3-95d103825aa&title=&width=1316)<br />Create a event for adding a new partition.
 ```sql
 CREATE EVENT IF NOT EXISTS add_partition ON SCHEDULE
-EVERY 1 DAY STARTS '2022-12-28 18:00:00'
+EVERY 1 DAY STARTS '2022-12-30 14:00:00'
 ON COMPLETION PRESERVE
 DO INSERT INTO event_metering VALUES(0, DATE_ADD(NOW(), INTERVAL 1 DAY), 0, DATE_ADD(NOW(), INTERVAL 1 DAY), 1, 'Normal');
 ```
@@ -72,7 +72,7 @@ Create a event for dropping a partition.
 ```sql
 DELIMITER ||
 CREATE EVENT IF NOT EXISTS drop_partition ON SCHEDULE
-EVERY 1 DAY STARTS '2022-12-28 18:00:00'
+EVERY 1 DAY STARTS '2022-12-30 14:00:00'
 ON COMPLETION PRESERVE
 DO
 BEGIN
@@ -83,4 +83,4 @@ deallocate prepare stmt_drop_partition;
 END ||
 DELIMITER ;
 ```
-At 2022-12-28 18:00:00, events will be triggered for the first time, drop yesterday's partition (gmt_create between '2022-12-27' and '2022-12-28'), add partition to store tomorrow's data (gmt_create between '2022-12-29' and '2022-12-30'). Every day thereafter, events will be triggered at 18:00:00 to periodically manage partitions.
+At 2022-12-30 14:00:00, events will be triggered for the first time, drop yesterday's partition (gmt_create between '2022-12-29' and '2022-12-30'), add partition to store tomorrow's data (gmt_create between '2022-12-31' and '2023-01-01'). Every day thereafter, events will be triggered at 14:00:00 to periodically manage partitions.
