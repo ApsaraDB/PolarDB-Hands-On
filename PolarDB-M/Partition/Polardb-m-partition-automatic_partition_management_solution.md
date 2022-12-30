@@ -83,4 +83,4 @@ deallocate prepare stmt_drop_partition;
 END ||
 DELIMITER ;
 ```
-At 2022-12-28 18:00:00, events will be triggered for the first time, drop yesterday's partition (gmt_create between '2022-12-27'~'2022-12-28'), add partition to store tomorrow's data (gmt_create between '2022-12-29'~'2022-12-30'). Every day thereafter, events will be triggered at 18:00:00 to periodically manage partitions.
+At 2022-12-28 18:00:00, events will be triggered for the first time, drop yesterday's partition (gmt_create between '2022-12-27' and '2022-12-28'), add partition to store tomorrow's data (gmt_create between '2022-12-29' and '2022-12-30'). Every day thereafter, events will be triggered at 18:00:00 to periodically manage partitions.
