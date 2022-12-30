@@ -9,15 +9,21 @@ Assuming that the PolarDB MySQL is now used as a data transfer station, the data
 On the [PolarDB console](https://polardb.console.aliyun.com/), select an instance whose cluster version must be PolarDB MySQL engine version 8.0.2 and whose Revision version is 8.0.2.2.0 or above. If there is no suitable instance, please purchase a new instance or upgrade the instance version.
 <a name="bm6RF"></a>
 ### Parameters
-PolarDB MySQL has a new feature of [partition level MDL](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/online-partition-maintenance)(Metadata Lock), which can reduce the granularity of MDL to optimize some scenarios where DDL and DML are mutually blocked. Enable this function to better experience automatic partition management.<br />On the navigation interface of the instance, click **Parameters**, enter loose_partition_level_mdl_enabled in the input box, and check the value of this parameter. If the current value is not **ON**, you need to modify the parameter to **ON** on the console.<br />**How to modify parameter:**
+PolarDB MySQL has a new feature of [partition level MDL](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/online-partition-maintenance)(Metadata Lock), which can reduce the granularity of MDL to optimize some scenarios where DDL and DML are mutually blocked. Enable this function to better experience automatic partition management.<br />On the navigation interface of the instance, click **Parameters**, enter loose_partition_level_mdl_enabled in the input box, and check the value of this parameter. If the current value is not **ON**, you need to modify the parameter to **ON** on the console.<br />![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/5758fa1f-e771-4d66-a206-59ed40b61903.png#crop=0&crop=0&crop=1&crop=1&id=Cr6ic&originHeight=796&originWidth=3576&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />**How to modify parameter:**
 
 1. Click **Modify**.
+
+![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/e1e26e92-a609-453d-9937-ce4dda63aafc.png#crop=0&crop=0&crop=1&crop=1&id=xzDYm&originHeight=798&originWidth=3578&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
 2. Search loose_partition_level_mdl_enabled.
 3. If the **Cluster Parameter** column shows that the current value is **OFF**, click the button to change it to **ON.**
 4. Click **Apply Changes**.
+
+![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/0c2e62ea-6114-4272-b9f8-f91c76524a2d.png#crop=0&crop=0&crop=1&crop=1&id=RYB2c&originHeight=788&originWidth=3578&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
 5.  Click **Modify Now**.
 
-Modifying this parameter requires restarting the instance. After the instance restarts, click **Log On to Database** to create events on the DMS console.
+![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/0560fa7f-229a-4fb8-b635-b16ca32d5931.png#crop=0&crop=0&crop=1&crop=1&id=paUqb&originHeight=1292&originWidth=3562&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />Modifying this parameter requires restarting the instance. After the instance restarts, click **Log On to Database** to create events on the DMS console.
 <a name="hfpEM"></a>
 ### Events
 Adding/dropping partitions periodically through events can reduce the workload of the DBA.<br />First create an [Interval partition table](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/overview-internal-range), `gmt_create` as the partition key, the interval is 1 day, and there is a partition p0 in the table.
