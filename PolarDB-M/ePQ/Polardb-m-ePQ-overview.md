@@ -68,4 +68,3 @@ records_threshold_for_parallelism | Session | If the number of scanned rows exce
 cost_threshold_for_parallelism | Session | If the cost of sequential queries exceeds the value of the cost_threshold_for_parallelism parameter, the optimizer enables the elastic parallel query feature.
 records_threshold_for_mpp | Session | If the number of scanned rows of a table involved in a query statement exceeds this threshold, the optimizer considers using multi-node elastic parallel query.
 cost_threshold_for_mpp | Session | If the sequential execution cost of a query statement exceeds this threshold, the optimizer considers using multi-node elastic parallel query.
-|
