@@ -9,7 +9,7 @@ Assuming that the PolarDB MySQL is now used as a data transfer station, the data
 On the [PolarDB console](https://polardb.console.aliyun.com/), select an instance whose cluster version must be PolarDB MySQL engine version 8.0.2 and whose Revision version is 8.0.2.2.0 or above. If there is no suitable instance, please purchase a new instance or upgrade the instance version.
 <a name="bm6RF"></a>
 ### Parameters
-PolarDB MySQL has a new feature of [partition level MDL](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/online-partition-maintenance)(Metadata Lock), which can reduce the granularity of MDL to optimize some scenarios where DDL and DML are mutually blocked. Enable this function to better experience automatic partition management.<br />On the navigation interface of the instance, click **Parameters**, enter loose_partition_level_mdl_enabled in the input box, and check the value of this parameter. If the current value is not **ON**, you need to modify the parameter to **ON** on the console.<br />![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/ef6a1732-409f-4c5f-b9e3-0485b6cfdc40.png#crop=0&crop=0&crop=1&crop=1&id=W12YA&originHeight=328&originWidth=1500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />**How to modify parameter:**
+PolarDB MySQL has a new feature of [partition level MDL](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/online-partition-maintenance)(Metadata Lock), which can reduce the granularity of MDL to optimize some scenarios where DDL and DML are mutually blocked. Enable this function to better experience automatic partition management.<br />On the navigation interface of the instance, click **Parameters**, enter loose_partition_level_mdl_enabled in the input box, and check the value of this parameter. If the current value is not **ON**, you need to modify the parameter to **ON** on the console.<br />**How to modify parameter:**
 
 1. Click **Modify**.
 2. Search loose_partition_level_mdl_enabled.
@@ -61,7 +61,7 @@ DELIMITER ;
 
 CALL batch_insert(1, 10000);
 ```
-Assume that the O&M time(Maintenance Window) is 14:00pm-15:00pm every day, events are set to be triggered at 14:00pm.<br />The O&M time is generally 2:00-3:00 by default, and the O&M time of the instance can be modified in the **Maintenance Window** of the **Overview** interface.<br />![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2022/png/221080/1672377756096-128f27bd-f7d9-4bd0-9998-db4695e9d03d.png#clientId=u78aa8c14-6e15-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=254&id=ue78bf57d&name=image.png&originHeight=508&originWidth=2632&originalType=binary&ratio=1&rotation=0&showTitle=false&size=292541&status=done&style=none&taskId=uabd16580-2438-4fed-87b3-95d103825aa&title=&width=1316)<br />Create a event for adding a new partition.
+Assume that the O&M time(Maintenance Window) is 14:00pm-15:00pm every day, events are set to be triggered at 14:00pm.<br />The O&M time is generally 2:00-3:00 by default, and the O&M time of the instance can be modified in the **Maintenance Window** of the **Overview** interface.<br />![](https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/neweditor/ef6a1732-409f-4c5f-b9e3-0485b6cfdc40.png#crop=0&crop=0&crop=1&crop=1&id=Hk01U&originHeight=328&originWidth=1500&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)<br />Create a event for adding a new partition.
 ```sql
 CREATE EVENT IF NOT EXISTS add_partition ON SCHEDULE
 EVERY 1 DAY STARTS '2022-12-30 14:00:00'
