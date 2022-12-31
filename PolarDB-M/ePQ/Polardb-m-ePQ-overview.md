@@ -26,9 +26,9 @@ Multi-node elastic parallel query introduces global resource views and adaptive 
 Elasticity is one of the core capabilities of PolarDB. Automatic scaling provides elasticity that is very friendly to short queries. However, it was not applicable to complex analytic queries because a single query still cannot be accelerated by adding nodes in large query scenarios. On clusters with the elastic parallel query feature enabled, newly scaled out nodes are automatically added to the cluster to share computing resources and enhance elasticity.
 
 ## Combination of online and offline services
-The most effective isolation method is to route the online transaction and offline analytic services to different node sets. However, this method increases costs. In many cases, online transaction and offline analytic services have different peak hours. An economical method is to share cluster resources between online transaction and offline analytic services and route them to different cluster endpoints. After the elastic parallel query feature is enabled, idle resources are distributed to the offline analytic service during off-peak hours of the online transaction service to reduce costs and improve efficiency.
+The most effective isolation method is to route the online transaction and offline analytic services to different node sets. According to the characteristics of business scenarios, different clusters can set their own parallel strategies.
 
-![parallel_query-online-offline](https://user-images.githubusercontent.com/1224612/210052377-8abb8481-9f32-4e49-8652-8a890aecfbce.png)
+![parallel_query-online-offline](https://user-images.githubusercontent.com/1224612/210067397-0873c882-ab0c-4002-87a3-1f9fb5dbaef5.png)
 
 # Quick Start
 ## Enable the elastic parallel query feature
