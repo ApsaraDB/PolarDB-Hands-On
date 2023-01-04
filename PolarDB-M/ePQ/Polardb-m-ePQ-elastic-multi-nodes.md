@@ -48,7 +48,6 @@ mysql> select avg(P_RETAILPRICE),min(P_RETAILPRICE),max(P_RETAILPRICE) from part
 |        1499.495035 |             900.01 |            2098.99 |
 +--------------------+--------------------+--------------------+
 1 row in set (8.55 sec)
--- View the query plan.
 ```
 
 Without ePQ, the query time is `8.55` sec.
