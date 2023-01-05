@@ -67,7 +67,7 @@ The services of an enterprise may be deployed across a country or on a global sc
 1. Log on to the [PolarDB console](https://polardb.console.aliyun.com/).
 2. In the left-side navigation pane, click **Cluster**. On the **Cluster** page, click **Create Cluster** to create **primary cluster** first.
 
-![image-20230104154319638](/Users/songzhao/Library/Application Support/typora-user-images/image-20230104154319638.png)
+![image-20230104154319638](https://user-images.githubusercontent.com/7909854/210697404-c9bfede5-26d8-4a75-9029-26c893e014c7.png)
 
 3. Back to the left-side navigation pane, click **Global Database Network**. On the **Global Database Network** page, click **Create GDN**.
 
@@ -176,5 +176,4 @@ Applications in different regions connect to the GDN by using the cluster endpoi
 5. Click "**Switch to Primary Cluster**" button, wait for a few minutes. Then the old secondary cluster become a new primary cluster.
 
    ![image](https://user-images.githubusercontent.com/7909854/210523293-a8004228-29fa-401a-907d-a46324739986.png)
-
 
