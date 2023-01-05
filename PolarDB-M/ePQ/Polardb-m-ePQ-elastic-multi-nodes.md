@@ -5,7 +5,7 @@ PolarDB for MySQL 8.0 provides the elastic Parallel Query(ePQ) feature. The feat
 
 The principle of parallel query is to split a large query task into multiple sub-query tasks, and distribute the sub-tasks to multiple threads for concurrent processing. The core idea is to use the concurrent processing capability of multi-core chips to speed up the query. Elastic parallel query also supports distributing subtasks to multiple nodes for execution, have better elastic expansion ability.
 
-![parallel_query-arch](https://user-images.githubusercontent.com/1224612/210052654-b0d6d0e0-e0e8-4aeb-a819-db7e28c1e4c4.png)
+![overview](images/overview.png)
 
 
 ## Business Scenario
@@ -118,3 +118,4 @@ Enabled elastic parallel query , the response time of the slow query can be redu
 ### Resource Management
 The core idea of parallel query is to use the idle computing resources of nodes in the cluster to speed up the query in parallel, which is very suitable for the scenario where the utilization rate of cluster resources is not high. When the cluster load is already high, it will automatically limit the parallelism of parallel queries to prevent resource overload.
 
+### IMCI vs ePQ
