@@ -112,5 +112,9 @@ After a new node is expanded to the cluster, the query response time is speedup 
 Enabled elastic parallel query , the response time of the slow query can be reduced linearly.
 
 
+> For more details and examples, please refer to [Alibaba Cloud documentation](https://www.alibabacloud.com/help/zh/polardb-for-mysql/latest/parallel-query-parallel-query) for learning. 
+
+
 ### Resource Management
 The core idea of parallel query is to use the idle computing resources of nodes in the cluster to speed up the query in parallel, which is very suitable for the scenario where the utilization rate of cluster resources is not high. When the cluster load is already high, it will automatically limit the parallelism of parallel queries to prevent resource overload.
+
