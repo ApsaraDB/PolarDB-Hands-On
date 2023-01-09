@@ -1,6 +1,13 @@
-# PolarDB Hands On
+# PolarDB Hands-On
 
-# Database centric solutions hands-on on PolarDB MySQL
+### 🚀 Get started with Alibaba Cloud featured database PolarDB
+[PolarDB](https://www.alibabacloud.com/product/polardb), the new-generation cloud-native relational database service developed by Alibaba Cloud, is fully compatible with MySQL, PostgreSQL and highly compatible with Oracle. PolarDB provides high performance and high availability of commercial database with ease to use. PolarDB hands-on and its related YouTube video are regularly updated with new features and interesting application.
+
+🎬 Subscribe our YouTube channel: [Alibaba Cloud ApsaraDB](https://www.youtube.com/@AlibabaDatabase)
+
+# Database centric solutions hands-on on PolarDB for MySQL
+
+📖 PolarDB for MySQL [Official Documentation](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/what-is-polardb)
 
 | Solution | Description | Related Cloud Services | Video Tutorial | Solution Page on Alibaba Cloud |
 | :------: | :---------: | :--------------------: | :------------: | :----------------------------: |
@@ -10,3 +17,8 @@
 | Partition Feature 3:  Partial Indexes for Partitioned Tables | Quick start with how to use Partial Indexes for Partitioned Tables of PolarDB MySQL| PolarDB MySQL, Partition Table | |  |
 | [Elastic Parallel Query](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/ePQ/Polardb-m-ePQ-elastic-multi-nodes.md) | Overview and quick start with elastic Parallel Query | PolarDB MySQL,HTAP | | |
 | [ Running TPC-H on PolarDB IMCI](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/IMCI/README.md)| The full steps of generating TPC-H data and running TPC-H 22 queries on PolarDB IMCI. | PolarDB MySQL,IMCI,HTAP | | |
+
+
+# Database centric solutions hands-on on PolarDB for PostgreSQL
+
+📖 PolarDB for PostgreSQL [Official Documentation](https://www.alibabacloud.com/help/en/polardb-for-postgresql)
