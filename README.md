@@ -17,9 +17,11 @@
 | Partition Feature 3:  Partial Indexes for Partitioned Tables | Quick start with how to use Partial Indexes for Partitioned Tables of PolarDB MySQL| PolarDB MySQL, Partition Table | |  |
 | [Elastic Parallel Query](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/ePQ/Polardb-m-ePQ-elastic-multi-nodes.md) | Overview and quick start with elastic Parallel Query | PolarDB MySQL,HTAP | | |
 | [ Running TPC-H on PolarDB IMCI](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/IMCI/README.md)| The full steps of generating TPC-H data and running TPC-H 22 queries on PolarDB IMCI. | PolarDB MySQL,IMCI,HTAP | | |
-| [Ganos Vector Pyramid on PolarDB PG](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-PG/Ganos/Polardb-PG-Ganos-Vector-Pyramid.md) | Quick start with how to use PolarDB PG Ganos-Vector-pyramid feature to build massive spatial data services | PolarDB PostgreSQL，Ganos | | |
 
 
 # Database centric solutions hands-on on PolarDB for PostgreSQL
 
 📖 PolarDB for PostgreSQL [Official Documentation](https://www.alibabacloud.com/help/en/polardb-for-postgresql)
+| Solution | Description | Related Cloud Services | Video Tutorial | Solution Page on Alibaba Cloud |
+| :------: | :---------: | :--------------------: | :------------: | :----------------------------: |
+| [Ganos Vector Pyramid on PolarDB PG](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-PG/Ganos/Polardb-PG-Ganos-Vector-Pyramid.md) | Quick start with how to use PolarDB PG Ganos-Vector-pyramid feature to build massive spatial data services | PolarDB PostgreSQL，Ganos | | |
