@@ -205,7 +205,7 @@ When the computation terminates, the predicted results along with the specified 
 
 ## PolarDB for AI: In-database Model Deployment
 
-PolarDB for AI has some built-in machine learning models such as KMeans, SVR, lightgbm, etc. Nevertheless, the models used in real-world applications can be varied. In order to support various models, PolarDB for AI supports the uploading of customized models that are created by different machine learning frameworks (such as TensorFlow, Pytorch and sklearn); furthermore, PolarDB for AI uses these customized models as easy as the built-in models, following the same SQL syntax. In the following, we show how to do achieve this in a couple of SQL statements.
+PolarDB for AI has some built-in machine learning models such as KMeans, SVR, lightgbm, etc. Nevertheless, the models used in real-world applications can be varied. In order to support various models, PolarDB for AI supports the uploading of customized models that are created by different machine learning frameworks (such as TensorFlow, Pytorch and sklearn); furthermore, PolarDB for AI uses these customized models as easy as the built-in models, following the same SQL syntax. In the following, we show how to achieve this in a couple of SQL statements.
 
 
 ### Step 1: Upload a customized model
