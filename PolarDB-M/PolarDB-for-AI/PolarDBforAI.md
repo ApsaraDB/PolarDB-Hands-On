@@ -153,13 +153,13 @@ As we only have one model, we could use "SHOW MODELS" and "SHOW MODEL" interchan
 At first, the model status may be "loading_data", indicating PolarDB for AI is preparing the training data.
 
 <div align="center">
-<img src=imgs/loading-data.png width=600 />
+<img src=imgs/loading-data.png width=400 />
 </div>
 
 After a while, when the model status returned by "SHOW MODELS" is "saved_oss", the model is ready for use.
 
 <div align="center">
-<img src=imgs/saved_oss.png width=600 />
+<img src=imgs/saved_oss.png width=400 />
 </div>
 
 
@@ -195,7 +195,7 @@ y_cols='Delay'" specifies the X columns and Y columns.
 When the computation terminates, the predicted results along with the specified columns "Delay" will be returned, as illustrated below.
 
 <div align="center">
-<img src=imgs/predicted_results.png width=600 />
+<img src=imgs/predicted_results.png width=900 />
 </div>
 
 
@@ -231,7 +231,7 @@ After the uploading, you need to deploy the customized model so that it can be c
 First, you need to check the customized model status (e.g. "my_model"), until it becomes "saved_oss", as illustrated in the Figure below.
 
 <div align="center">
-<img src=imgs/deploy_model_1.png />
+<img src=imgs/deploy_model_1.png width=400 />
 </div>
 
 Next, you need to deploy the customized model status to PolarDB for AI. Here, "MODEL DEPLOY" is used.
@@ -248,7 +248,7 @@ An OK message should be returned when the model is deployed successfully.
 At this moment, when the model status is checked again, it should become "serving", indicating the customized model is ready for serving.
 
 <div align="center">
-<img src=imgs/deploy_model_2_serving.png />
+<img src=imgs/deploy_model_2_serving.png width=400 />
 </div>
 
 
@@ -293,7 +293,7 @@ where model_name denotes the model name.
 As shown below, you may delete the model "arilines_gbm" and "my_model" using drop model statements. After the deletion, show models should return an empty set.
 
 <div align="center">
-<img src=imgs/cleanup.png />
+<img src=imgs/cleanup.png width=400 />
 </div>
 
 ## More features
