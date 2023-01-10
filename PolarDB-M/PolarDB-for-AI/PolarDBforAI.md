@@ -20,6 +20,9 @@ Clearly, such a pipeline is complicated. As a result, many small or medium-sized
 ## _PolarDB_ _for_ _AI_ is an in-database machine learning system 
 Aiming at a one-stop in-database machine learning solution, PolarDB for AI (PDAI) was devised[1] and developed as a module of PolarDB. PDAI provides in-database feature engineering, in-database machine learning, and in-database model deployment capabilities with a collection of well-designed and user-friendly SQL templates. Some SQL templates corresponding to feature engineering include feature creation, feature update, feature deletion, and feature status checking; some SQL templates corresponding to machine learning and model deployment include model creation, model training, model evaluation, model prediction, model upload, model download, model deletion, model listing, and model status checking. Based on these generalized operations, a database user can easily perform feature engineering and machine learning using SQL statements.
 
+[1] Qiuru Lin, Sai Wu, Junbo Zhao, Jian Dai, Feifei Li, Gang Chen:
+A Comparative Study of in-Database Inference Approaches. ICDE 2022: 1794-1807
+
 <div align="center">
 <img src=imgs/polardb-for-ai-arch.png width=600 />
 </div>
@@ -42,7 +45,7 @@ First of all, you need to turn on PolarDB for AI, shown on the main page of Pola
 </div>
 
 
-Then, a dedicated account is preferably be created for the PolarDB for AI. For example, as shown below, we may create a new account "polar_test" with respect to the database "db4ai" and grant "ReadOnly" permission to the account.
+Then, a dedicated account is preferably be created for the PolarDB for AI. For example, as shown below, you may create a new account "polar_test" with respect to the database "db4ai" and grant "ReadOnly" permission to the account.
 
 <div align="center">
 <img src=imgs/creatAccount-modified.png width=600 />
