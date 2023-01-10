@@ -231,7 +231,7 @@ After the uploading, you need to deploy the customized model so that it can be c
 First, you need to check the customized model status (e.g. "my_model"), until it becomes "saved_oss", as illustrated in the Figure below.
 
 <div align="center">
-<img src=imgs/deploy_model_1.png width=600 />
+<img src=imgs/deploy_model_1.png width=900 />
 </div>
 
 Next, you need to deploy the customized model status to PolarDB for AI. Here, "MODEL DEPLOY" is used.
