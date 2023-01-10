@@ -79,7 +79,7 @@ When executing a PolarDB for AI SQL statement, you need to add /*polar4ai*/ befo
 ### Step 1: Create a model
 
 A machine learning model can be created by the following SQL statement template.
-(More details can be found at http://******)
+(More details can be found at [PolarDB for AI](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/polardb4ai))
 
 ```
 /*polar4ai*/
@@ -88,17 +88,7 @@ CREATE MODEL model_name WITH
 AS 
 (SELECT select_expr [, select_expr] ... FROM table_reference)
 ```
-
-
-| **Parameters** | **Description** | 
-| -------- | -------- | 
-| model_name     | User-specified model name    | 
-| model_class     | Model types supported by PolarDB for AI. It can be <p> [lightgbm](https://help.aliyun.com/document_detail/439731.htm?spm=a2c4g.11186623.0.0.4d836ecbdAeUAM#concept-2228620) </p><p> [deepfm](https://help.aliyun.com/document_detail/439732.htm?spm=a2c4g.11186623.0.0.4d836ecbdAeUAM#concept-2228622) </p><p> [kmeans](https://help.aliyun.com/document_detail/439733.htm?spm=a2c4g.11186623.0.0.4d836ecbdAeUAM#concept-2228623) </p><p> [randomforestreg](https://help.aliyun.com/document_detail/439734.htm?spm=a2c4g.11186623.0.0.4d836ecbdAeUAM#concept-2230309) </p><p> [gbrt](https://help.aliyun.com/document_detail/439735.htm?spm=a2c4g.11186623.0.0.4d836ecbdAeUAM#concept-2230381) </p><p> [linearreg](https://help.aliyun.com/document_detail/439736.htm?spm=a2c4g.11186623.0.0.4d836ecbdAeUAM#concept-2230404) </p><p> [svr](https://help.aliyun.com/document_detail/439737.htm?spm=a2c4g.11186623.0.0.4d836ecbdAeUAM#concept-2230411)  | 
-| x_cols     | The input X columns for model creation and training.   |
-| y_cols     | The input Y columns for model creation and training.   | 
-| model_parameter    | The parameter setting for the model. Please refer to the corresponding model for details.  |
-| select_expr     | The SQL statement to obtain the training data from the database.   |
-| table_reference     | The table names to obtain the training data from the database.   |
+where model_name denotes the user-specified model name; model_class represents the built-in model types (currently, [lightgbm](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/lightgbm), [deepfm](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/deepfm), [kmeans](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/kmeans), [randomforestreg](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/random), [gbrt](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/gbrt), [linearreg](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/linearregression), [svr](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/svr) are supported) supported by PolarDB for AI; x_cols is the input X columns for model creation and training; y_cols is the input Y columns for model creation and training; model_parameter is the  parameter setting for the model. Please refer to the corresponding model for details; select_expr denotes the SQL statement to obtain the training data from the database; table_reference is the table names to obtain the training data from the database.
 
 
 Here, we give a running example of how to create a model using PolarDB for AI.
@@ -303,4 +293,4 @@ As shown below, you may delete the model "arilines_gbm" and "my_model" using dro
 
 ## More features
 
-The above steps demonstrate how to perform in-database model management including model creation, model listing, and model prediction, and how to use a customized model in PolarDB for AI. More features such as model description, model evaluation, and feature engineering are provided by PolarDB for AI as well. You may find more details at http://*****.
+The above steps demonstrate how to perform in-database model management including model creation, model listing, and model prediction, and how to use a customized model in PolarDB for AI. More features such as model description, model evaluation, and feature engineering are provided by PolarDB for AI as well. You may find more details at [PolarDB for AI](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/polardb4ai).
