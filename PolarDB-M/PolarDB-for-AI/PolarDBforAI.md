@@ -38,20 +38,20 @@ As shown in the figure above, a PolarDB instance equipped with the PolarDB for A
 First of all, you need to turn on PolarDB for AI, shown on the main page of PolarDB console.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1672992979359-565746f5-7668-4167-9d73-78fbf8ccca65.png width=600 />
+<img src=imgs/baseinfo-modified.png width=600 />
 </div>
 
 
 Then, a dedicated account is preferably be created for the PolarDB for AI. For example, as shown below, we may create a new account "polar_test" with respect to the database "db4ai" and grant "ReadOnly" permission to the account.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1672993529980-7d58852f-c177-4b64-83e7-0450fb879e10.png width=600 />
+<img src=imgs/creatAccount-modified.png width=600 />
 </div>
 
 After that, you can use the dedicated account to enable PolarDB for AI.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1672998776210-5305e8c3-7719-4401-b89d-21c6d59aa4d1.png width=600 />
+<img src=imgs/username-modified.png width=600 />
 </div>
 
 ### Step 2: Connect to PolarDB for AI
@@ -67,7 +67,7 @@ $> mysql -h PolarDB_cluster_address -u username -p password -c
 where PolarDB_cluster_address is the public cluster endpoint address, username and password come from the account created in Step 1.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1672994022154-90f655e3-d30f-42fb-9375-f0a3ce45b361.png width=600 />
+<img src=imgs/mainaddress-modified.png width=600 />
 </div>
 
 
