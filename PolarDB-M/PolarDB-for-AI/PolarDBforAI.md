@@ -219,7 +219,7 @@ where model_name denotes the model name, model_location specified the location o
 For example, we can upload a customized model "my_model" that is stored in OSS and uses the requirements.txt as its requirements file, using the SQL statement shown in the figure below.
 
 <div align="center">
-<img src=imgs/upload_model.png width=600 />
+<img src=imgs/upload_model.png width=900 />
 </div>
 
 When the uploading SQL statement is successfully performed, an OK message will be returned.
@@ -231,7 +231,7 @@ After the uploading, you need to deploy the customized model so that it can be c
 First, you need to check the customized model status (e.g. "my_model"), until it becomes "saved_oss", as illustrated in the Figure below.
 
 <div align="center">
-<img src=imgs/deploy_model_1.png width=900 />
+<img src=imgs/deploy_model_1.png />
 </div>
 
 Next, you need to deploy the customized model status to PolarDB for AI. Here, "MODEL DEPLOY" is used.
