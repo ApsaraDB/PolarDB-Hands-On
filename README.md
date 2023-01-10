@@ -5,7 +5,7 @@
 
 🎬 Subscribe our YouTube channel: [Alibaba Cloud ApsaraDB](https://www.youtube.com/@AlibabaDatabase)
 
-# Database centric solutions hands-on on PolarDB for MySQL
+## Database centric solutions hands-on on PolarDB for MySQL
 
 📖 PolarDB for MySQL [Official Documentation](https://www.alibabacloud.com/help/en/polardb-for-mysql/latest/what-is-polardb)
 
@@ -20,9 +20,10 @@
 | [Use Machine Learning in PolarDB: PolarDB for AI ](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/PolarDB-for-AI/PolarDBforAI.md)| PolarDB for AI helps gain in-depth insights from data, offer in-time and expert-like decisions, and boost your key business growth metrics. | PolarDB MySQL,MLOps, Machine learning, Feature Engineering | | |
 
 
-# Database centric solutions hands-on on PolarDB for PostgreSQL
+## Database centric solutions hands-on on PolarDB for PostgreSQL
 
 📖 PolarDB for PostgreSQL [Official Documentation](https://www.alibabacloud.com/help/en/polardb-for-postgresql)
 | Solution | Description | Related Cloud Services | Video Tutorial | Solution Page on Alibaba Cloud |
 | :------: | :---------: | :--------------------: | :------------: | :----------------------------: |
-| [Ganos Vector Pyramid on PolarDB PG](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-PG/Ganos/Polardb-PG-Ganos-Vector-Pyramid.md) | Quick start with how to use PolarDB PG Ganos-Vector-pyramid feature to build massive spatial data services | PolarDB PostgreSQL，Ganos | | |
+| [Deploy and Run Superset with PolarDB-PG on Alibaba Cloud](./PolarDB-PG/App/polardb-pg-superset.md) | Quick start with using PolarDB-PG to build a Superset application | PolarDB for PostgreSQL | | |
+| [Ganos Vector Pyramid on PolarDB PG](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-PG/Ganos/Polardb-PG-Ganos-Vector-Pyramid.md) | Quick start with how to use PolarDB-PG Ganos-Vector-pyramid feature to build massive spatial data services | PolarDB for PostgreSQL, Ganos | | |
