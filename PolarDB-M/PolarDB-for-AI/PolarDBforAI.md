@@ -10,7 +10,7 @@ Compared with conventional data analytic jobs, nevertheless, such a data analyti
 
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1672749950361-e2d77d07-9975-4b72-90f7-18f1119a185e.png width=600 />
+<img src=imgs/machine-learning-pipeline.png width=600 />
 </div>
 
 ## In-database machine learning could be a _solution_
@@ -21,7 +21,7 @@ Clearly, such a pipeline is complicated. As a result, many small or medium-sized
 Aiming at a one-stop in-database machine learning solution, PolarDB for AI (PDAI) was devised[1] and developed as a module of PolarDB. PDAI provides in-database feature engineering, in-database machine learning, and in-database model deployment capabilities with a collection of well-designed and user-friendly SQL templates. Some SQL templates corresponding to feature engineering include feature creation, feature update, feature deletion, and feature status checking; some SQL templates corresponding to machine learning and model deployment include model creation, model training, model evaluation, model prediction, model upload, model download, model deletion, model listing, and model status checking. Based on these generalized operations, a database user can easily perform feature engineering and machine learning using SQL statements.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1672750815270-4ef7a1dd-1663-4a00-a0d5-6aacd23c73fd.png width=600 />
+<img src=imgs/polardb-for-ai-arch.png width=600 />
 </div>
 
 
@@ -99,7 +99,7 @@ select * from db4ai.airlines_train LIMIT 10;
 ``` 
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673000547580-a1f3ecc2-913b-4b1b-98fe-47bbcb08b51b.png width=600 />
+<img src=imgs/airline-limit10.png width=600 />
 </div>
 
 Next, as illustrated below, we can create a model whose name is airline_gbm, model class is lightgbm, and model parameter setting is (boosting_type='gbdt', n_estimators=100, max_depth=8, num_leaves=256), where the training data is selected from the relational table db4ai.airlines_train, the columns 'Airline,Flight,AirportFrom,AirportTo,DayOfWeek,Time,Length' correspond to the X in lightgbm, and column 'Delay' corresponds to the Y in lightgbm.
@@ -153,13 +153,13 @@ As we only have one model, we could use "SHOW MODELS" and "SHOW MODEL" interchan
 At first, the model status may be "loading_data", indicating PolarDB for AI is preparing the training data.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673001732069-0f439d9a-a127-4e2a-92f4-32fb231b00e1.png width=600 />
+<img src=imgs/loading-data.png width=600 />
 </div>
 
 After a while, when the model status returned by "SHOW MODELS" is "saved_oss", the model is ready for use.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673001863468-8fef68d5-1fbb-4536-8246-c18f74897e38.png width=600 />
+<img src=imgs/saved_oss.png width=600 />
 </div>
 
 
@@ -195,7 +195,7 @@ y_cols='Delay'" specifies the X columns and Y columns.
 When the computation terminates, the predicted results along with the specified columns "Delay" will be returned, as illustrated below.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673002935795-0769d863-c6ba-4144-85bc-ae77d3b1a691.png width=600 />
+<img src=imgs/predicted_results.png width=600 />
 </div>
 
 
@@ -219,7 +219,7 @@ where model_name denotes the model name, model_location specified the location o
 For example, we can upload a customized model "my_model" that is stored in OSS and uses the requirements.txt as its requirements file, using the SQL statement shown in the figure below.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673004588443-33631cfa-aa2f-43f1-8da1-bc51db968345.png width=600 />
+<img src=imgs/upload_model.png width=600 />
 </div>
 
 When the uploading SQL statement is successfully performed, an OK message will be returned.
@@ -231,7 +231,7 @@ After the uploading, you need to deploy the customized model so that it can be c
 First, you need to check the customized model status (e.g. "my_model"), until it becomes "saved_oss", as illustrated in the Figure below.
 
 <div align="center">
-<img src=https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673004615571-bffdeea2-61c6-48be-acca-7941d0cc8ef4.png width=600 />
+<img src=imgs/deploy_model_1.png width=600 />
 </div>
 
 Next, you need to deploy the customized model status to PolarDB for AI. Here, "MODEL DEPLOY" is used.
@@ -247,7 +247,9 @@ An OK message should be returned when the model is deployed successfully.
 
 At this moment, when the model status is checked again, it should become "serving", indicating the customized model is ready for serving.
 
-![undefined](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673004682465-b4589d03-9267-43ed-8bf8-8935d4814cc8.png) 
+<div align="center">
+<img src=imgs/deploy_model_2_serving.png />
+</div>
 
 
 
@@ -257,8 +259,9 @@ When the customized model is ready for serving, you may proceed to use the custo
 
 Before diving into the customized model prediction, we first take a look at the data stored in a table for prediction. As shown below, the table "regression_test" has 29 columns, where x1-x28 are the features used to predict the values in column Y.
 
-![undefined](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673004742424-c3d201c7-6f40-463a-a8a3-0c496623f82d.png) 
-
+<div align="center">
+<img src=imgs/cus_model_limit10.png />
+</div>
 
 Same as the built-in models, the customized model can be used by a "PREDICT" SQL statement. As shown below, the SQL statement
 
@@ -271,8 +274,9 @@ x16,x17,x18,x19,x20,x21,x22,x23,x24,x25,x26,x27,x28', y_cols='');
 ``` 
 utilizes the customized model "my_model" to predict the data retrieved from table "regrsssion_test". The predicted results should be returned in the column "predicted_results".
 
-![undefined](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673004808794-15b12b3d-692d-483d-8ab1-4a356373646d.png) 
-
+<div align="center">
+<img src=imgs/cus_model_predicted_results.png />
+</div>
 
 ### Step 4: Clean up
 
@@ -288,8 +292,9 @@ where model_name denotes the model name.
 
 As shown below, you may delete the model "arilines_gbm" and "my_model" using drop model statements. After the deletion, show models should return an empty set.
 
-![undefined](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/191407/1673004904198-17279535-f1fa-4aca-a757-1be084a6fd98.png) 
-
+<div align="center">
+<img src=imgs/cleanup.png />
+</div>
 
 ## More features
 
