@@ -17,7 +17,7 @@
 | Partition Feature 3:  Partial Indexes for Partitioned Tables | Quick start with how to use Partial Indexes for Partitioned Tables of PolarDB MySQL| PolarDB MySQL, Partition Table | |  |
 | [Elastic Parallel Query](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/ePQ/Polardb-m-ePQ-elastic-multi-nodes.md) | Overview and quick start with elastic Parallel Query | PolarDB MySQL,HTAP | | |
 | [ Running TPC-H on PolarDB IMCI](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/IMCI/README.md)| The full steps of generating TPC-H data and running TPC-H 22 queries on PolarDB IMCI. | PolarDB MySQL,IMCI,HTAP | | |
-| [Use Machine Learning in PolarDB: PolarDB for AI ]([https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/IMCI/README.md](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/PolarDB-for-AI/PolarDBforAI.md))| PolarDB for AI helps gain valuable and detailed insights from data and influence your key business growth metrics. | PolarDB MySQL,MLOps, Machine learning, Feature Engineering | | |
+| [Use Machine Learning in PolarDB: PolarDB for AI ](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/PolarDB-for-AI/PolarDBforAI.md)| PolarDB for AI helps gain valuable and detailed insights from data and influence your key business growth metrics. | PolarDB MySQL,MLOps, Machine learning, Feature Engineering | | |
 
 
 # Database centric solutions hands-on on PolarDB for PostgreSQL
