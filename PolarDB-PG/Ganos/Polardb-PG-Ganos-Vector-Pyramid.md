@@ -24,19 +24,21 @@ This post introduces Ganos' vector pyramid with a simple example. It introduces 
 > 
 
 ## 2. Download data
-We use the vector data from the official website of [Geofabrik](https://download.geofabrik.de/). Specificially, we use the [build data](https://download.geofabrik.de/north-america/us/california.html) in Southern California.
+> Our test data comes from OpenStreetMap. Please see here for the [license](https://www.openstreetmap.org/copyright).
+
+We use the vector data from the official website of [Geofabrik](https://download.geofabrik.de/). Specificially, we use the [build data](https://download.geofabrik.de/asia.html) in Malaysia, Singapore, and Brunei.
 1. Download the data from website:
 
-![image.png](./assets/shp.png)
+![image.png](./assets/shp.jpg)
 
-2. Unzip the files. In this example we store the files in the `socal-latest-free.shp` folder.
+2. Unzip the files. In this example we store the files in the `malaysia-singapore-brunei-latest-free.shp` folder.
 ## 3. Loading building data
 
 1. Install [GDAL](https://gdal.org/download.html#windows) on your system.(We use Windows as an example).
 2. Execute the following command:
 ```shell
-# import Southern California buildings data
-ogr2ogr.exe PG:"host='YOUR_HOST' user='YOUR_USER' dbname='YOUR_DB_NAME' port='YOUR_PORT' password='YOUR_PASSWORD'" "D:/socal-latest-free.shp/gis_osm_buildings_a_free_1.shp" -progress
+# import Malaysia, Singapore, and Brunei buildings data
+ogr2ogr.exe PG:"host='YOUR_HOST' user='YOUR_USER' dbname='YOUR_DB_NAME' port='YOUR_PORT' password='YOUR_PASSWORD'" "D:/malaysia-singapore-brunei-latest-free.shp/gis_osm_buildings_a_free_1.shp" -progress
 ```
 ## 4. Build the vector pyramid
 
@@ -56,7 +58,7 @@ SELECT ST_BuildPyramid('gis_osm_buildings_a_free_1', 'wkb_geometry', 'ogc_fid','
    - The loaded data table has the same name as the dataset,i.e., `gis_osm_buildings_a_free_1`.
    - The geometry field is `wkb_geometry`.
    - The unique id field is `ogc_fid`.
-   - There's a total of 4 million records.
+   - There's a total of 0.8 million records.
 - The full detail of building the vector pyramid can be found in our [document](https://www.alibabacloud.com/help/en/apsaradb-for-rds/latest/functions-to-build-pyramids-st-buildpyramid).
 - After successfully building the vector pyramid, it should have the same name as the data table,i.e., `gis_osm_buildings_a_free_1`.
 
@@ -160,73 +162,52 @@ if __name__ == "__main__":
 - The detail of the `ST_ASPNG` fuction can be found in the [document](https://www.alibabacloud.com/help/en/apsaradb-for-rds/latest/functions-to-view-pyramids-st-aspng).
 ### 5.3 Frontend Script
 
-1. Estimate data extent:
-```sql
-SELECT ST_EstimatedExtent('gis_osm_buildings_a_free_1','wkb_geometry');
-```
-
-- The detail of the `ST_EstimatedExten` fuction can be found in the [document](https://www.alibabacloud.com/help/en/apsaradb-for-rds/latest/st-estimated3dextent).
-- In the example, the query result is:`BOX(-121.343284606934 32.5338668823242,-114.149124145508 35.8101539611816)`.
-2. Modify the data range in the frontend script `pyramid_viewer.html`:
+1. Modify the frontend script `pyramid_viewer.html`:
 ```html
 <!DOCTYPE html>
 <html>
+  
 <head>
   <meta charset="utf-8">
   <title>Pyramid Viewer</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
 </head>
 
 <body>
-  <div id="map" style="height: 100vh"></div>
+  <div id="map" style="position: absolute; top: 0; bottom: 0; width: 100%;"></div>
   <script>
-    let BOUNDS = [-121.343284606934, 32.5338668823242, -114.149124145508, 35.8101539611816]
-    const sources = {
-      google_satellite: {
-        type: "raster",
-        tiles: ["http://mt2.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"],
-        tileSize: 256,
-      },
-      pyramid: {
+    let CENTER = [103.851959, 1.290270]
+    let YOUR_TOKEN = 'YOUR_TOKEN'
+
+    mapboxgl.accessToken = YOUR_TOKEN;
+    let map = new mapboxgl.Map({
+      container: 'map',
+      style: "mapbox://styles/mapbox/satellite-v9",
+      center: CENTER,
+      zoom: 11
+    })
+    map.on("load", () => {
+      map.addSource('pyramid', {
         type: "raster",
         tiles: [`${window.location.href}png/{z}/{x}/{y}`],
         tileSize: 1024,
-      }
-    };
-
-    const layers = [
-      {
-        id: 'base_map',
-        type: 'raster',
-        source: 'google_satellite',
-        layout: { visibility: 'visible' },
-      },
-      {
+      });
+      map.addLayer({
         id: 'buildings',
         type: 'raster',
         source: 'pyramid',
-        layout: { visibility: 'visible' },
-      },
-    ];
-    new mapboxgl.Map({
-      container: 'map',
-      style: { version: 8, layers, sources },
-      center: [(BOUNDS[0] + BOUNDS[2]) / 2, (BOUNDS[1] + BOUNDS[3]) / 2],
-      zoom: 9
-    }).on("load", async () => {
-      map.resize();
-      map.fitBounds(BOUNDS);
+      });
     });
-
   </script>
-
 </body>
 </html>
 ```
 
-- Set up the `BOUNDS` array according to the approximate data range,i.e.,`[-121.343284606934, 32.5338668823242, -114.149124145508, 35.8101539611816]`.
+- Set up `CENTER` to your point of interest,i.e.,`[103.851959, 1.290270]`.
+- Set up `YOUR_TOKEN` to your mapbox token,see [here](https://docs.mapbox.com/help/glossary/access-token/) for more infomation.
+
 ## 6. Demo application
 
 1. Run the script:
@@ -240,4 +221,4 @@ python ./app.py
 ![image.png](./assets/view_2.png)
 ![image.png](./assets/view_3.png)
 
-We can see the published building layer on the satellite map.
+We can see the published building layer on the map.
