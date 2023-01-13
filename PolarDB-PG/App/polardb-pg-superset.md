@@ -1,4 +1,4 @@
-# Deploy and Run Superset with PolarDB-PG on Alibaba Cloud
+# Deploy and Run Superset with PolarDB for PostgreSQL on Alibaba Cloud
 
 ## Overview
 
