@@ -1,4 +1,4 @@
-# PolarDB Hands-ON
+# PolarDB Hands-On
 
 ### 🚀 Get started with Alibaba Cloud featured database PolarDB
 [PolarDB](https://www.alibabacloud.com/product/polardb), the new-generation cloud-native relational database service developed by Alibaba Cloud, is fully compatible with MySQL, PostgreSQL and highly compatible with Oracle. PolarDB provides high performance and high availability of commercial database with ease to use. PolarDB hands-on and its related YouTube video are regularly updated with new features and interesting application.
