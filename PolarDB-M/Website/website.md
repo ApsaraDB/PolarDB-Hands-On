@@ -6,7 +6,7 @@ Quick start with website hosting on Alibaba Cloud with PolarDB MySQL as database
 2. A web host
 
 ## Install LAMP environment
-Install dependencies on the web host. This lab use Alibaba Cloud ECS instance with CentOS 7 system.
+Install dependencies on the web host. This lab use Alibaba Cloud ECS instance with CentOS 7 system. You can use any web host, or host the website on your local machine. Be sure to install php version 7 as required by the hosted website.
 ```shell
 yum -y install httpd httpd-manual mod_ssl mod_perl mod_auth_mysql mysql epel-release git
 yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -22,8 +22,8 @@ yum -y install php php-mysql gd php-gd gd-devel php-xml php-common php-mbstring 
 3. You will need a public cluster endpoint to access PolarDB.
 In Cluster Endpoints block, click Apply to apply for a public endpoint.
 ![apply for public endpoint](apply.png)
-4. Select Accounts on the left, and click Create Account to create a new account for website to use
-5. Select Databases on the left, and click Create Database to create a database fot the website and authorize user to read and write.
+4. Select Accounts on the left, and click Create Account to create a new standard account for website to use
+5. Select Databases on the left, and click Create Database to create a database for the website and authorize user to read and write.
 6. In order to connect to Polar, whitelist incomming IP address.
 Select Whitelists on the left, and add IP whitelist or modify the existing default whitelist to allow the web host to access the database
 ![left column](left.png)
@@ -31,6 +31,14 @@ Select Whitelists on the left, and add IP whitelist or modify the existing defau
 ```shell
 mysql -h<endpoint> -P<port> -p<password> -u<user> -D<database>
 ```
+| option  | explanation  |
+|---|---|
+| endpoint:port | address to the database from step 3 ![end](endpoint.png) |
+| user & passwsord | user account created in step 4 |
+| database | database created in step 5 |
+
+
+
 
 ## Host the Website
 This lab uses open source project [PbootCMS](https://gitee.com/hnaoyun/PbootCMS)(in Chinese)

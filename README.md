@@ -20,7 +20,7 @@
 | [ Running TPC-H on PolarDB IMCI](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/IMCI/README.md)| The full steps of generating TPC-H data and running TPC-H 22 queries on PolarDB IMCI. | PolarDB MySQL,IMCI,HTAP | | 
 | [Use Machine Learning in PolarDB: PolarDB for AI ](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/PolarDB-for-AI/PolarDBforAI.md)| PolarDB for AI helps gain in-depth insights from data, offer in-time and expert-like decisions, and boost your key business growth metrics. | PolarDB MySQL,MLOps, Machine learning, Feature Engineering | | 
 | [PolarDB Global Database Network](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/GDN/Polardb-M-GDN.md)| Quick start with how to create and use a PolarDB GDN cluster. | PolarDB MySQL, GDN | | 
-
+| [Use PolarDB to Host a Website](https://github.com/ApsaraDB/PolarDB-Hands-On/blob/main/PolarDB-M/Website/website.md)| Quick start with how host a website using PolarDB for MySQL as database backend. | PolarDB MySQL | | 
 
 
 ## Database centric solutions hands-on on PolarDB for PostgreSQL
